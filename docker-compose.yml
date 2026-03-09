@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    ports:
+      - "5672:5672"
+      - "15672:15672"  # Management UI
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 30s
+      timeout: 30s
+      retries: 3
+
+  document-service:
+    build: ./services/document-service
+    ports:
+      - "3001:3001"
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    environment:
+      - NODE_ENV=production
+      - RABBITMQ_URL=amqp://rabbitmq

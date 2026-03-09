@@ -37,5 +37,14 @@ temp/
 *.tmp
 .cache/
 
+# Secrets and certificates
+*.key
+*.pem
+*.crt
+*.p12
+
+# Docker
+.docker/
+
 # Optional: uncomment if using package-lock for reproducible builds
 # package-lock.json
