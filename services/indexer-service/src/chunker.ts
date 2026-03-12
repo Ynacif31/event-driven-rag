@@ -28,7 +28,7 @@ export function chunkDocument(
 
         if (chunkText.length > 0) {
             chunks.push({
-                chunkId: `${docId}-chunk-${index}`,
+                chunkId: `${docId}-v${docVersion}-chunk-${index}`,
                 docId,
                 docVersion,
                 index,
